@@ -1,0 +1,3088 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Toolbox WebAPI",
+    "version": "6.0"
+  },
+  "paths": {
+    "/api/v6/about/object/{objectGuid}": {
+      "get": {
+        "tags": [
+          "About"
+        ],
+        "summary": "Provides general information for the specified Toolbox object",
+        "parameters": [
+          {
+            "name": "objectGuid",
+            "in": "path",
+            "description": "GUID of the Toolbox object",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolboxObjectAbout"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolboxObjectAbout"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolboxObjectAbout"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/calculation": {
+      "get": {
+        "tags": [
+          "Calculation"
+        ],
+        "summary": "Returns all available calculators",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Calculator"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Calculator"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Calculator"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/calculation/{calculatorGuid}/{chemId}": {
+      "get": {
+        "tags": [
+          "Calculation"
+        ],
+        "summary": "Applies the given calculator to the given chemical",
+        "parameters": [
+          {
+            "name": "calculatorGuid",
+            "in": "path",
+            "description": "The GUID of the calculator",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "The chemId of the target chemical",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataEntry"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataEntry"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataEntry"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/calculation/all/{chemId}": {
+      "get": {
+        "tags": [
+          "Calculation"
+        ],
+        "summary": "Applies all available calculators to the given chemical",
+        "parameters": [
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "The chemId of the target chemical",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CalculationResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CalculationResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CalculationResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/calculation/{calculatorGuid}/info": {
+      "get": {
+        "tags": [
+          "Calculation"
+        ],
+        "parameters": [
+          {
+            "name": "calculatorGuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/v6/data/endpointtree": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "summary": "Returns the entire endpoint tree",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/data/metadatahierarchy": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "summary": "Returns the default metadata hierarchy in one call (optimization)",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetadataHierarchy"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetadataHierarchy"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetadataHierarchy"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/data/metadatavalues": {
+      "post": {
+        "tags": [
+          "Data"
+        ],
+        "summary": "Returns the suggested metadata values for a given metadata label based on the already defined ones (in the same branch)",
+        "parameters": [
+          {
+            "name": "rigidPath",
+            "in": "query",
+            "description": "Rigid path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "metadataLabel",
+            "in": "query",
+            "description": "Metadata label for which to retrieve suggested values",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Already defined text metadata values along the branch",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AlreadyDefinedMetadata"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AlreadyDefinedMetadata"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AlreadyDefinedMetadata"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/AlreadyDefinedMetadata"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/data/endpoint": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "summary": "Retrieves all endpoints available at the given position of the endpoint tree",
+        "parameters": [
+          {
+            "name": "position",
+            "in": "query",
+            "description": "A #-delimited endpoint tree position",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/data/units": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "summary": "Provides the units for the endpoint at the given endpoint tree position",
+        "parameters": [
+          {
+            "name": "position",
+            "in": "query",
+            "description": "A #-delimited endpoint tree position",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endpoint",
+            "in": "query",
+            "description": "The name of the endpoint",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataUnit"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataUnit"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataUnit"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/data/{chemId}": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "summary": "Retrieves data for the specified endpoint at the given position for the selected chemical",
+        "parameters": [
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "ChemID of the chemical to look for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "position",
+            "in": "query",
+            "description": "A #-delimited endpoint tree position",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endpoint",
+            "in": "query",
+            "description": "The name of the endpoint",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeMetadata",
+            "in": "query",
+            "description": "If metadata should be provided with the endpoint",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataPoint"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataPoint"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataPoint"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/data/all/{chemId}": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "summary": "Retrieves all data for the selected chemical",
+        "parameters": [
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "ChemID of the chemical to look for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "includeMetadata",
+            "in": "query",
+            "description": "If metadata should be provided with the endpoint",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataPoint"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataPoint"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataPoint"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/data/databases": {
+      "get": {
+        "tags": [
+          "Data"
+        ],
+        "summary": "Retrieves a list with databases containing data for the specified endpoint",
+        "parameters": [
+          {
+            "name": "position",
+            "in": "query",
+            "description": "A #-delimited endpoint tree position",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endpoint",
+            "in": "query",
+            "description": "The name of the endpoint",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/export/list/smi": {
+      "get": {
+        "tags": [
+          "Export"
+        ],
+        "summary": "Exports the given chemicals as a .smi text file",
+        "parameters": [
+          {
+            "name": "chemIds",
+            "in": "query",
+            "description": "List of chemical ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v6/grouping/{chemId}/{profilerGuid}": {
+      "get": {
+        "tags": [
+          "Grouping"
+        ],
+        "summary": "Creates a group of chemicals from the given databases having same profiles as the target chemical by the specified profiler",
+        "parameters": [
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "Target chemical",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "profilerGuid",
+            "in": "path",
+            "description": "Profiler",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "databaseIds",
+            "in": "query",
+            "description": "List of databases",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/iuclid/cas/{cas}": {
+      "get": {
+        "tags": [
+          "Iuclid"
+        ],
+        "summary": "Find IUCLID entities by CAS Number",
+        "parameters": [
+          {
+            "name": "cas",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchEntity"
+            }
+          },
+          {
+            "name": "section",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchSection"
+            }
+          },
+          {
+            "name": "substanceType",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchSubstanceType"
+            }
+          },
+          {
+            "name": "sources",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/iuclid/ecnumber/{ecnumber}": {
+      "get": {
+        "tags": [
+          "Iuclid"
+        ],
+        "summary": "Find IUCLID entities by EC Number",
+        "parameters": [
+          {
+            "name": "ecnumber",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchEntity"
+            }
+          },
+          {
+            "name": "section",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchSection"
+            }
+          },
+          {
+            "name": "substanceType",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchSubstanceType"
+            }
+          },
+          {
+            "name": "sources",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/iuclid/name": {
+      "get": {
+        "tags": [
+          "Iuclid"
+        ],
+        "summary": "Find IUCLID entities by Chemical name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchEntity"
+            }
+          },
+          {
+            "name": "section",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchSection"
+            }
+          },
+          {
+            "name": "substanceType",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchSubstanceType"
+            }
+          },
+          {
+            "name": "sources",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/iuclid/smiles/{isSubfragmentSearch}": {
+      "get": {
+        "tags": [
+          "Iuclid"
+        ],
+        "summary": "Find IUCLID entities by SMILES (exact or substructure)",
+        "parameters": [
+          {
+            "name": "smiles",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isSubfragmentSearch",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "entity",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchEntity"
+            }
+          },
+          {
+            "name": "section",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchSection"
+            }
+          },
+          {
+            "name": "substanceType",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "$ref": "#/components/schemas/IuclidSearchSubstanceType"
+            }
+          },
+          {
+            "name": "sources",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IuclidResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/iuclid/databases": {
+      "get": {
+        "tags": [
+          "Iuclid"
+        ],
+        "summary": "Retrieve a list of databases with IUCLID imports",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Database"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Database"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Database"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/metabolism": {
+      "get": {
+        "tags": [
+          "Metabolism"
+        ],
+        "summary": "Requests all available simulators",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Simulator"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Simulator"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Simulator"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/metabolism/{simulatorGuid}/{chemId}": {
+      "get": {
+        "tags": [
+          "Metabolism"
+        ],
+        "summary": "Applies the given simulator to the given chemical returning the produced metabolites",
+        "parameters": [
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "The ChemId of the chemical to metabolize",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "simulatorGuid",
+            "in": "path",
+            "description": "The GUID of the simulator to apply",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/metabolism/{simulatorGuid}": {
+      "get": {
+        "tags": [
+          "Metabolism"
+        ],
+        "summary": "Applies the given simulator to the given SMILES returning the produced metabolites",
+        "parameters": [
+          {
+            "name": "smiles",
+            "in": "query",
+            "description": "The SMILES of the chemical to metabolize",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "simulatorGuid",
+            "in": "path",
+            "description": "The GUID of the simmulator to apply",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/metabolism/{simulatorGuid}/info": {
+      "get": {
+        "tags": [
+          "Metabolism"
+        ],
+        "summary": "Provides general information for the specified simulator",
+        "parameters": [
+          {
+            "name": "simulatorGuid",
+            "in": "path",
+            "description": "GUID of the Simulator",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/v6/profiling": {
+      "get": {
+        "tags": [
+          "Profiling"
+        ],
+        "summary": "Requests all available profilers",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Profiler"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Profiler"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Profiler"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/profiling/{profilerGuid}": {
+      "get": {
+        "tags": [
+          "Profiling"
+        ],
+        "summary": "Returns all of the available categories for a provided profiler",
+        "parameters": [
+          {
+            "name": "profilerGuid",
+            "in": "path",
+            "description": "The profile for which to retrieve the categories",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/profiling/{profilerGuid}/{chemId}/{simulatorGuid}": {
+      "get": {
+        "tags": [
+          "Profiling"
+        ],
+        "summary": "Profiles the provided chemical with the specified profiler",
+        "parameters": [
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "The ChemID of the chemical to be profiled",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "profilerGuid",
+            "in": "path",
+            "description": "GUID of the profiler to be used",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "simulatorGuid",
+            "in": "path",
+            "description": "GUID of the profiler to be used",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/profiling/all/{chemId}": {
+      "get": {
+        "tags": [
+          "Profiling"
+        ],
+        "summary": "Profiles the provided chemical with all available profilers",
+        "parameters": [
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "The ChemID of the chemical to be profiled",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProfilingResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProfilingResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProfilingResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/profiling/{profilerGuid}/literature": {
+      "get": {
+        "tags": [
+          "Profiling"
+        ],
+        "summary": "Provides literature for the given category in the specified profiler",
+        "parameters": [
+          {
+            "name": "profilerGuid",
+            "in": "path",
+            "description": "GUID of the profiler",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Name of the category",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v6/profiling/{profilerGuid}/info": {
+      "get": {
+        "tags": [
+          "Profiling"
+        ],
+        "summary": "Provides general information for the specified profiler",
+        "parameters": [
+          {
+            "name": "profilerGuid",
+            "in": "path",
+            "description": "GUID of the Profiler",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ITbObjectAbout"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/v6/profiling/relevancies": {
+      "get": {
+        "tags": [
+          "Profiling"
+        ],
+        "summary": "Requests profiles that are relevant to the specified endpoint position and metadata",
+        "parameters": [
+          {
+            "name": "position",
+            "in": "query",
+            "description": "A #-delimited endpoint tree position>",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "metadata",
+            "in": "query",
+            "description": "A set of metadata key-value pairs",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelevantProfiles"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelevantProfiles"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RelevantProfiles"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/qsar/list/{position}": {
+      "get": {
+        "tags": [
+          "Qsar"
+        ],
+        "summary": "Retrieves all QSAR models that are associated to the provided position of the endpoint tree",
+        "parameters": [
+          {
+            "name": "position",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Qsar"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Qsar"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Qsar"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/qsar/apply/{qsarGuid}/{chemId}": {
+      "get": {
+        "tags": [
+          "Qsar"
+        ],
+        "summary": "Applies the specified QSAR model onto the provided chemical",
+        "parameters": [
+          {
+            "name": "qsarGuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "chemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPoint"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPoint"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataPoint"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/qsar/domain/{qsarGuid}/{chemId}": {
+      "get": {
+        "tags": [
+          "Qsar"
+        ],
+        "summary": "Checks whether the chemicals falls within the domain of the specified QSAR model",
+        "parameters": [
+          {
+            "name": "qsarGuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "chemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/search/cas/{cas}/{ignoreStereo}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Performs a search by CAS number",
+        "parameters": [
+          {
+            "name": "cas",
+            "in": "path",
+            "description": "The CAS to search for",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "ignoreStereo",
+            "in": "path",
+            "description": "When true, stereo information will be ignored",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/search/ecnumber/{ecnumber}/{ignoreStereo}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Performs a search by EC number",
+        "parameters": [
+          {
+            "name": "ecnumber",
+            "in": "path",
+            "description": "The EC to search for",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "ignoreStereo",
+            "in": "path",
+            "description": "When true, stereo information will be ignored",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/search/name/{name}/{options}/{ignoreStereo}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Performs a search by name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "The name to search for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "options",
+            "in": "path",
+            "description": "0 - ExactMatch, 1 - StartsWith, 2 - Contains",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/SearchNameOptions"
+            }
+          },
+          {
+            "name": "ignoreStereo",
+            "in": "path",
+            "description": "When true, stereo information will be ignored",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/search/smiles/{registerUnknown}/{ignoreStereo}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Performs a search by SMILES and returns a SmilesSearchResult object as a result",
+        "parameters": [
+          {
+            "name": "smiles",
+            "in": "query",
+            "description": "The smiles to search for",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "registerUnknown",
+            "in": "path",
+            "description": "When true, unknown structures will be added to the database",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ignoreStereo",
+            "in": "path",
+            "description": "When true, stereo information will be ignored",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chemical"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/search/chemical/{chemId}": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Returns a chemical structure from the provided chemId containing CAS# and Smiles",
+        "parameters": [
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "The chemical id to search for",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chemical"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chemical"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chemical"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/search/databases": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Lists all databases and inventories",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Database"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Database"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Database"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/structure/canonize": {
+      "get": {
+        "tags": [
+          "Structure"
+        ],
+        "summary": "Returns the canonized version of the provided smiles",
+        "parameters": [
+          {
+            "name": "smiles",
+            "in": "query",
+            "description": "The SMILES to canonize",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/structure/connectivity": {
+      "get": {
+        "tags": [
+          "Structure"
+        ],
+        "summary": "Returns connectivity string for the supplied smiles",
+        "parameters": [
+          {
+            "name": "smiles",
+            "in": "query",
+            "description": "The SMILES of the structure",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/workflows": {
+      "get": {
+        "tags": [
+          "Workflows"
+        ],
+        "summary": "Requests all available workflows",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workflow"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workflow"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workflow"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v6/workflows/{workflowGuid}/{chemId}": {
+      "get": {
+        "tags": [
+          "Workflows"
+        ],
+        "summary": "Executes a workflow with a given chemical",
+        "parameters": [
+          {
+            "name": "workflowGuid",
+            "in": "path",
+            "description": "GUID of the workflow to be used",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "chemId",
+            "in": "path",
+            "description": "The ChemID of the chemical to be profiled",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AboutTextPair": {
+        "type": "object",
+        "properties": {
+          "_label": {
+            "type": "string"
+          },
+          "_value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlreadyDefinedMetadata": {
+        "type": "object",
+        "properties": {
+          "Label": {
+            "type": "string",
+            "description": "Metadata label with defined values, e.g. \"Endpoint\"",
+            "nullable": true
+          },
+          "Values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Already defined metadata values by the user.\r\nThe TE dialog can be configured to accept multiple OR-ed values by the user hence we expect a collection of strings",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CalculationResult": {
+        "type": "object",
+        "properties": {
+          "CalculatorGuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "CalculatorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "CalculatorType": {
+            "type": "string",
+            "nullable": true
+          },
+          "Calculation": {
+            "$ref": "#/components/schemas/DataEntry"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Calculator": {
+        "type": "object",
+        "properties": {
+          "Caption": {
+            "type": "string",
+            "description": "Caption of the Toolbox Object",
+            "nullable": true
+          },
+          "Guid": {
+            "type": "string",
+            "description": "Unique identifier of the Toolbox Object",
+            "format": "uuid"
+          },
+          "Units": {
+            "type": "string",
+            "description": "Default units of the parameter",
+            "nullable": true
+          },
+          "Is3D": {
+            "type": "boolean",
+            "description": "Indicates whether this is a 3D parameter"
+          },
+          "IsExperimental": {
+            "type": "boolean",
+            "description": "Indicates whether this is a parameter related to observed (experimental) data"
+          },
+          "Description": {
+            "type": "string",
+            "description": "Descriptive information about the parameter",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Chemical": {
+        "type": "object",
+        "properties": {
+          "SubstanceType": {
+            "$ref": "#/components/schemas/SubstanceType"
+          },
+          "ChemId": {
+            "type": "string",
+            "description": "Id of the chemical in the QSAR Toolbox",
+            "format": "uuid"
+          },
+          "Cas": {
+            "type": "integer",
+            "description": "CAS# of the chemical",
+            "format": "int64"
+          },
+          "ECNumber": {
+            "type": "string",
+            "description": "EC Number",
+            "nullable": true
+          },
+          "Smiles": {
+            "type": "string",
+            "description": "SMILES of the chemical",
+            "nullable": true
+          },
+          "Names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Chemical name(s)",
+            "nullable": true
+          },
+          "CasSmilesRelation": {
+            "type": "string",
+            "description": "QA estimation of the CAS-SMILES relation",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Database": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "description": "Database ID",
+            "format": "int32",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "description": "Database name",
+            "nullable": true
+          },
+          "Type": {
+            "type": "string",
+            "description": "Database or Inventory",
+            "nullable": true
+          },
+          "UrlBase": {
+            "type": "string",
+            "description": "Url base of the host containing the IUCLID database",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataEntry": {
+        "type": "object",
+        "properties": {
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Qualifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "MinValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "MinQualifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaxValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaxQualifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Family": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataPoint": {
+        "type": "object",
+        "properties": {
+          "DataType": {
+            "type": "string",
+            "nullable": true
+          },
+          "RigidPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "Endpoint": {
+            "type": "string",
+            "nullable": true
+          },
+          "MetaData": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "Value": {
+            "type": "string",
+            "nullable": true
+          },
+          "Qualifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "MinValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "MinQualifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaxValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "MaxQualifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Family": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DataUnit": {
+        "type": "object",
+        "properties": {
+          "Unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "Family": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IChemIUCLID": {
+        "type": "object",
+        "properties": {
+          "IUCLIDIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IUCLIDIdRawToolboxId"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "Id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ITbObjectAbout": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Donator": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Disclaimer": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Authors": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "AdditionalInfo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AboutTextPair"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "HelpFile": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IUCLIDIdRawToolboxId": {
+        "type": "object",
+        "properties": {
+          "JSONSearchDetails": {
+            "type": "string",
+            "nullable": true
+          },
+          "RawToolboxId": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "IUCLIDName": {
+            "type": "string",
+            "nullable": true
+          },
+          "SourceId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "IUCLIDEntityId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Type": {
+            "$ref": "#/components/schemas/IUCLIDIdType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IUCLIDIdType": {
+        "enum": [
+          "Dossier",
+          "Substance",
+          "ReferenceSubstance",
+          "EndpointStudy",
+          "Composition",
+          "Testmaterial",
+          "Undefined"
+        ],
+        "type": "string"
+      },
+      "IuclidResult": {
+        "type": "object",
+        "properties": {
+          "Chemical": {
+            "$ref": "#/components/schemas/IChemIUCLID"
+          },
+          "ECHAEntityUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "ECHASectionUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IuclidSearchEntity": {
+        "enum": [
+          "Dataset",
+          "Dossier",
+          "Any"
+        ],
+        "type": "string"
+      },
+      "IuclidSearchSection": {
+        "enum": [
+          "Representation",
+          "Constituent",
+          "Impurity",
+          "Aditive",
+          "TestMaterial"
+        ],
+        "type": "string"
+      },
+      "IuclidSearchSubstanceType": {
+        "enum": [
+          "Any",
+          "Monoconstituent",
+          "Multiconstituent",
+          "Polymer",
+          "UVCB",
+          "Microorganism",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "MetadataHierarchy": {
+        "type": "object",
+        "properties": {
+          "RigidPath": {
+            "type": "string",
+            "description": "Rigid path associated with the list of metadata labels",
+            "nullable": true
+          },
+          "Labels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataLabel"
+            },
+            "description": "Metadatadata labels",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetadataLabel": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "description": "\"Endpoint\", \"Effect\", etc.",
+            "nullable": true
+          },
+          "IsNumeric": {
+            "type": "boolean",
+            "description": "Most metadata labels are textual, but some are numeric like \"Duration\""
+          },
+          "IsAutomatic": {
+            "type": "boolean",
+            "description": "Automatic nodes are filled in by the server once the TE is applied.\r\nThey should colored in orange and not allow further user interaction."
+          }
+        },
+        "additionalProperties": false
+      },
+      "Profiler": {
+        "type": "object",
+        "properties": {
+          "Caption": {
+            "type": "string",
+            "description": "Caption of the Toolbox Object",
+            "nullable": true
+          },
+          "Guid": {
+            "type": "string",
+            "description": "Unique identifier of the Toolbox Object",
+            "format": "uuid"
+          },
+          "Type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProfilingResult": {
+        "type": "object",
+        "properties": {
+          "ProfilerGuid": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "ProfilerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ProfilerType": {
+            "type": "string",
+            "nullable": true
+          },
+          "Categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Qsar": {
+        "type": "object",
+        "properties": {
+          "Caption": {
+            "type": "string",
+            "description": "Caption of the Toolbox Object",
+            "nullable": true
+          },
+          "Guid": {
+            "type": "string",
+            "description": "Unique identifier of the Toolbox Object",
+            "format": "uuid"
+          },
+          "Position": {
+            "type": "string",
+            "nullable": true
+          },
+          "Donator": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RelevantProfiles": {
+        "type": "object",
+        "properties": {
+          "Suitable": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "Plausible": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SearchNameOptions": {
+        "enum": [
+          "ExactMatch",
+          "StartWith",
+          "Contains"
+        ],
+        "type": "string"
+      },
+      "Simulator": {
+        "type": "object",
+        "properties": {
+          "Caption": {
+            "type": "string",
+            "description": "Caption of the Toolbox Object",
+            "nullable": true
+          },
+          "Guid": {
+            "type": "string",
+            "description": "Unique identifier of the Toolbox Object",
+            "format": "uuid"
+          },
+          "IsObserved": {
+            "type": "boolean",
+            "description": "Boolean indicating whether this is Observed (documented) or Simmulated metabolism"
+          },
+          "ProductName": {
+            "type": "string",
+            "description": "Common name of the generated metabolites",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A representation of a metabolism simulator"
+      },
+      "SubstanceType": {
+        "enum": [
+          "Unknown",
+          "MonoConstituent",
+          "MultiConstituent",
+          "Polymer",
+          "Uvcb",
+          "Microorganism",
+          "MetaboliteSet",
+          "TautomericSet",
+          "Other"
+        ],
+        "type": "string"
+      },
+      "ToolboxObjectAbout": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Donator": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Disclaimer": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Authors": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "Url": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "AdditionalInfo": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Workflow": {
+        "type": "object",
+        "properties": {
+          "Caption": {
+            "type": "string",
+            "description": "Caption of the Toolbox Object",
+            "nullable": true
+          },
+          "Guid": {
+            "type": "string",
+            "description": "Unique identifier of the Toolbox Object",
+            "format": "uuid"
+          },
+          "Endpoint": {
+            "type": "string",
+            "description": "The endpoint for which the workflow was built for",
+            "nullable": true
+          },
+          "RigidPath": {
+            "type": "string",
+            "description": "Fixed position in the endpoint tree",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WorkflowResult": {
+        "type": "object",
+        "properties": {
+          "Result": {
+            "type": "string",
+            "nullable": true
+          },
+          "Prediction": {
+            "$ref": "#/components/schemas/DataPoint"
+          },
+          "DomainResult": {
+            "type": "string",
+            "nullable": true
+          },
+          "DomainExplain": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
